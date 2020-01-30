@@ -24,11 +24,11 @@ public class ApiController {
 
     @GetMapping("api")
     public Result getUser(String token){
-        // 根据token查询对应app id并判断是否可用
-        String appId = redisTemplate.opsForValue().get(token);
         if (StringUtils.isEmpty(token)){
             return new Result("error:invalid token",null);
         }
+        // 根据token查询对应app id并判断是否可用
+        String appId = redisTemplate.opsForValue().get(token);
         if (!StringUtils.isEmpty(appId)){
             appId = appId.trim();
         }
